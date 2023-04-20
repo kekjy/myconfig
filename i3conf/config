@@ -194,7 +194,11 @@ bindsym $mod+Shift+f exec firefox
 # screenshot--scrot
 bindsym $win+Shift+s exec scrot
 
+# filewindows--ranger
+bindsym $win+e exec alacritty -e ranger
+
 # blurlock
+exec --no-startup-id xautolock -time 30 -locker -i blurlock
 bindsym $win+l exec --no-startup-id blurlock
 
 set $mode_system 注消(O), 休眠(L), 重启(R), 关机(S), 退出(Esc)
