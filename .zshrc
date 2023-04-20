@@ -4,6 +4,9 @@ HISTSIZE=1000
 SAVEHIST=1000
 bindkey -e
 
+# Ranger Export
+export RANGER_LOAD_DEFAULT_RC=false
+
 # Bindkey
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
@@ -30,6 +33,7 @@ export ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH=go1.20
 # Plugin
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
 
 # Alias
 alias l='ls -a --color'
