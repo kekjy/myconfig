@@ -6,6 +6,7 @@ Plug 'w0rp/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 call plug#end()
 
@@ -142,9 +143,7 @@ if !isdirectory(s:vim_tags)
 endif
 
 " clang-format
-map <C-K> :py3f /usr/share/clang/clang-format.py<cr>
-imap <C-K> <c-o>:py3f /usr/share/clang/clang-format.py<cr>
-
+nnoremap mm :py3f /usr/share/clang/clang-format.py<cr>
 
 function! Formatonsave()
   let l:formatdiff = 1

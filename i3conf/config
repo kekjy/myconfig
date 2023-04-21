@@ -189,7 +189,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # browsers--firefox
-bindsym $mod+Shift+f exec firefox
+bindsym $win+w exec firefox
 
 # screenshot--scrot
 bindsym $win+Shift+s exec scrot
