@@ -192,7 +192,7 @@ bindsym $mod+r mode "resize"
 bindsym $win+w exec firefox
 
 # screenshot--scrot
-bindsym $win+Shift+s exec scrot
+bindsym $win+Shift+s exec scrot '/home/$a/Pictures/%Y-%m-%d_$wx$h.png'
 
 # filewindows--ranger
 bindsym $win+e exec alacritty -e ranger
