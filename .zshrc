@@ -6,6 +6,7 @@ bindkey -e
 
 # Ranger Export
 export RANGER_LOAD_DEFAULT_RC=false
+export rr='ranger'
 
 # Bindkey
 bindkey '^[[H' beginning-of-line
