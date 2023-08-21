@@ -5,6 +5,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ycm-core/YouCompleteMe'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
@@ -19,6 +20,7 @@ set autoindent      " 自动缩进
 " FZF vim
 nmap <C-p> :Files<CR>
 nmap <C-e> :Buffers<CR>
+nmap <M-f> :Ag<CR>
 let g:fzf_action = { 'ctrl-e': 'edit' }
 
 " YCM
