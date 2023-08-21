@@ -22,6 +22,9 @@ export GO111MODULE=on
 
 # FZF Export
 # export FZF_DEFAULT_COMMAND="find ! -name '*.git,*.vscode,*.idea' -type f"
+# DONOT FORGOT ADD KEYBINDINGS !
+# source /usr/share/doc/fzf/examples/key-bindings.bash
+# or RUN GITREPO install
 export FZF_DEFAULT_COMMAND='ag --hidden -p<(printf "%s/\n" .git .vscode .idea build node_modules .sass-cache .vim) -l -g ""'
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview 'cat {} 2> /dev/null | head -500'" 
 
