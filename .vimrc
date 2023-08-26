@@ -8,9 +8,29 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
+if &term =~ "xterm"
+    " INSERT mode
+    let &t_SI = "\<Esc>[6 q" . "\<Esc>]12;white\x7"
+    " REPLACE mode
+    let &t_SR = "\<Esc>[3 q" . "\<Esc>]12;white\x7"
+    " NORMAL mode
+    let &t_EI = "\<Esc>[2 q" . "\<Esc>]12;green\x7"
+endif
+
+colorscheme gruvbox
+
+noremap <C-c> :bd<CR>
+
+set bg=dark
+let g:gruvbox_contrast_dark='hard'
+
+set nu
+set ignorecase
+set smartcase
 set ts=4            " 设置缩进为4个空格
 set shiftwidth=4    " 表示每一级缩进的长度
 set softtabstop=4   " 退格键退回缩进空格的长度
@@ -20,7 +40,7 @@ set autoindent      " 自动缩进
 " FZF vim
 nmap <C-p> :Files<CR>
 nmap <C-e> :Buffers<CR>
-nmap <M-f> :Ag<CR>
+nmap f :Ag<CR>
 let g:fzf_action = { 'ctrl-e': 'edit' }
 
 " YCM
