@@ -6,7 +6,9 @@ bindkey -e
 
 # Ranger Export
 export RANGER_LOAD_DEFAULT_RC=false
-export rr='ranger'
+alias rr='ranger'
+export EDITOR="vim"
+export HIGHLIGHT_STYLE="molokai"
 
 # Bindkey
 bindkey '^[[H' beginning-of-line

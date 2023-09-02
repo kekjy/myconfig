@@ -25,9 +25,12 @@ colorscheme gruvbox
 
 noremap <C-c> :bd<CR>
 
+set encoding=utf-8
 set bg=dark
 let g:gruvbox_contrast_dark='hard'
 
+set hlsearch
+set incsearch
 set nu
 set ignorecase
 set smartcase
@@ -51,7 +54,7 @@ let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_key_invoke_completion = '<c-z>'
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/.ycm_cpp_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 set completeopt=menu,menuone
 
@@ -63,6 +66,7 @@ let g:ycm_semantic_triggers =  {
            \ }
 
 let g:ycm_filetype_whitelist = { 
+            \ "python":1,
 			\ "c":1,
 			\ "cpp":1, 
 			\ "objc":1,
@@ -165,10 +169,10 @@ if !isdirectory(s:vim_tags)
 endif
 
 " clang-format
-nnoremap mm :py3f /usr/share/clang/clang-format.py<cr>
+nnoremap mm :py3f /usr/share/clang/clang-format-14/clang-format.py<cr>
 
 function! Formatonsave()
   let l:formatdiff = 1
-  py3f /usr/share/clang/clang-format.py
+  py3f /usr/share/clang/clang-format-14/clang-format.py
 endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()

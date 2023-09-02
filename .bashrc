@@ -118,6 +118,8 @@ bind '"\e[1;5B": history-search-forward'
 
 # Ranger Export
 alias rr='ranger'
+export EDITOR="vim"
+export HIGHLIGHT_STYLE="molokai"
 
 # FZF Export
 
@@ -125,5 +127,5 @@ source /usr/share/doc/fzf/examples/key-bindings.bash
 
 alias fvim='vim $(fzf)'
 
-export FZF_DEFAULT_COMMAND='ag --hidden -p <(printf "*%s*\n" .git .svn .vscode .idea .vim node_modules build .sass-cache) -l -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden -p <(printf "%s/\n" .git .svn .vscode .idea .vim node_modules build .sass-cache) -l -g ""'
 export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
