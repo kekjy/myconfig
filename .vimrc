@@ -7,7 +7,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'morhetz/gruvbox'
 
 call plug#end()
@@ -48,7 +48,7 @@ let g:fzf_action = { 'ctrl-e': 'edit' }
 
 " YCM
 let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -173,6 +173,7 @@ nnoremap mm :py3f /usr/share/clang/clang-format-14/clang-format.py<cr>
 
 function! Formatonsave()
   let l:formatdiff = 1
-  py3f /usr/share/clang/clang-format-14/clang-format.py
+  " py3f /usr/share/clang/clang-format-14/clang-format.py
+  py3f /usr/share/clang/clang-format.py
 endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()

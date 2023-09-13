@@ -8,14 +8,26 @@ bindkey -e
 export RANGER_LOAD_DEFAULT_RC=false
 alias rr='ranger'
 export EDITOR="vim"
-export HIGHLIGHT_STYLE="molokai"
+export HIGHLIGHT_STYLE="base16/gruv_box-dark-hard"
 
 # Bindkey
+# for rxvt
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 
+bindkey '[1;5A' history-search-backward
+bindkey '[1;5B' history-search-forward
+
 autoload -U colors && colors
-PROMPT="%{$fg[blue]%}%n%{$rest_color%} %{$fg[green]%}%1|%~ %{$reset_color%}%#>"
+
+autoload -Uz compinit && compinit -u
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+if [ ${UID} -eq 0 ]; then
+PROMPT="%{$fg[red]%}%n%{$rest_color%} %{$fg[green]%}%1|%~%{$reset_color%}%#> "
+else
+PROMPT="%{$fg[blue]%}%n%{$rest_color%} %{$fg[green]%}%1|%~%{$reset_color%}%#> "
+fi
 RPROMPT="[%{$fg_bold[yellow]%}%?%{$reset_color%}]"
 
 # GO Proxy
@@ -27,8 +39,12 @@ export GO111MODULE=on
 # DONOT FORGOT ADD KEYBINDINGS !
 # source /usr/share/doc/fzf/examples/key-bindings.bash
 # or RUN GITREPO install
-export FZF_DEFAULT_COMMAND='ag --hidden -p<(printf "%s/\n" .git .vscode .idea build node_modules .sass-cache .vim) -l -g ""'
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview 'cat {} 2> /dev/null | head -500'" 
+alias fvim='vim $(fzf)'
+
+export FZF_DEFAULT_COMMAND='ag --hidden -p <(printf "%s/\n" .git .svn .vscode .idea .vim node_modules build .sass-cache) -l -g ""'
+export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # Golang Export
 export GOROOT=/usr/lib/go
@@ -47,6 +63,5 @@ alias l='ls -a --color'
 alias ll='ls -lah --color'
 alias ls='ls --color'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
-alias fvim='vim $(fzf)'
 
 # End of lines configured by zsh-newuser-install

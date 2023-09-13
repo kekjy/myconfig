@@ -119,7 +119,7 @@ bind '"\e[1;5B": history-search-forward'
 # Ranger Export
 alias rr='ranger'
 export EDITOR="vim"
-export HIGHLIGHT_STYLE="molokai"
+export HIGHLIGHT_STYLE="base16/gruv_box-dark-hard"
 
 # FZF Export
 
