@@ -7,10 +7,13 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'morhetz/gruvbox'
 
 call plug#end()
+
+let g:airline_section_b = '%{strftime("%H:%M")}'
 
 if &term =~ "xterm"
     " INSERT mode
@@ -48,7 +51,7 @@ let g:fzf_action = { 'ctrl-e': 'edit' }
 
 " YCM
 let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 1
+let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -146,7 +149,11 @@ nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
 nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
 
 " ctags
+" ctags --fields=+niazS --extras=+qF --kinds-c++=+pxl --kinds-c=+pxl -I \"_GLIBCXX_NOEXCEPT _GLIBCXX_USE_NOEXCEPT _GLIBCXX_NOTHROW _GLIBCXX_USE_CONSTEXPR _GLIBCXX_BEGIN_NAMESPACE_CONTAINER _GLIBCXX_END_NAMESPACE_CONTAINER _GLIBCXX_CONSTEXPR _GLIBCXX_NAMESPACE_LDBL _GLIBCXX_BEGIN_NAMESPACE_VERSION _GLIBCXX_END_NAMESPACE_VERSION _GLIBCXX_VISIBILITY+" -R -f ~/.vim/systags /usr/include/
+" ctags --fields=+niazS --extras=+qF --kinds-python=+l -R -f ~/.vim/pytags /usr/lib/python3.11
 set tags=./.tags;,.tags
+set tags+=~/.vim/systags
+set tags+=~/.vim/pytags
 
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
@@ -159,9 +166,10 @@ let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
 
 " 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+qF']
+let g:gutentags_ctags_extra_args += ['--kinds-c++=+pxl']
+let g:gutentags_ctags_extra_args += ['--kinds-c=+pxl']
+let g:gutentags_ctags_extra_args += ['--kinds-python=+l']
 
 " 检测 ~/.cache/tags 不存在就新建
 if !isdirectory(s:vim_tags)
