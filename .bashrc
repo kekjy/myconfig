@@ -122,8 +122,7 @@ export EDITOR="vim"
 export HIGHLIGHT_STYLE="base16/gruv_box-dark-hard"
 
 # FZF Export
-
-source /usr/share/doc/fzf/examples/key-bindings.bash
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] source /usr/share/doc/fzf/examples/key-bindings.bash
 
 alias fvim='vim $(fzf)'
 

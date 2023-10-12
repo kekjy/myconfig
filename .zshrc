@@ -1,3 +1,6 @@
+export LANGUAGE="en_US.UTF-8"
+export LC_ALL=
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -34,6 +37,10 @@ RPROMPT="[%{$fg_bold[yellow]%}%?%{$reset_color%}]"
 export GOPROXY=https://goproxy.cn,direct
 export GO111MODULE=on
 
+# export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.11/site-packages/
+export PYENV_ROOT=/home/kome/.pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # FZF Export
 # export FZF_DEFAULT_COMMAND="find ! -name '*.git,*.vscode,*.idea' -type f"
 # DONOT FORGOT ADD KEYBINDINGS !
@@ -65,3 +72,4 @@ alias ls='ls --color'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 
 # End of lines configured by zsh-newuser-install
+alias 7z=7zz

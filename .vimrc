@@ -1,3 +1,5 @@
+set nocompatible
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'ludovicchabant/vim-gutentags'
@@ -8,7 +10,7 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
-" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 Plug 'morhetz/gruvbox'
 
 call plug#end()
@@ -27,6 +29,7 @@ endif
 colorscheme gruvbox
 
 noremap <C-c> :bd<CR>
+noremap cc :bp<bar>bd #<CR>
 
 set encoding=utf-8
 set bg=dark
@@ -34,7 +37,7 @@ let g:gruvbox_contrast_dark='hard'
 
 set hlsearch
 set incsearch
-set nu
+set nu rnu
 set ignorecase
 set smartcase
 set ts=4            " 设置缩进为4个空格
@@ -48,6 +51,8 @@ nmap <C-p> :Files<CR>
 nmap <C-e> :Buffers<CR>
 nmap f :Ag<CR>
 let g:fzf_action = { 'ctrl-e': 'edit' }
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'highlight -O ansi {} || cat {}']}, <bang>0)
 
 " YCM
 let g:ycm_add_preview_to_completeopt = 0
@@ -101,7 +106,6 @@ hi! clear SpellRare
 hi! SpellBad gui=undercurl guisp=red
 hi! SpellCap gui=undercurl guisp=blue
 hi! SpellRare gui=undercurl guisp=magenta
-
 
 " 任务结束时候响铃提醒
 let g:asyncrun_bell = 1
@@ -184,4 +188,8 @@ function! Formatonsave()
   " py3f /usr/share/clang/clang-format-14/clang-format.py
   py3f /usr/share/clang/clang-format.py
 endfunction
-autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+
+augroup myautoload
+    autocmd!
+    autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+augroup END
