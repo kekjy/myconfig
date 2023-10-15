@@ -113,7 +113,7 @@ let g:asyncrun_bell = 1
 let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
 
 " 自动打开高度为具体值的 quickfix 窗口
-let g:asyncrun_open=10
+let g:asyncrun_open=12
 " 运行前保存文件
 let g:asyncrun_save=1
 " 用<F9>编译
@@ -147,7 +147,7 @@ func! CompileRun()
 endfunc
 
 " 设置 F5 打开/关闭 Quickfix 窗口
-nnoremap <F5> :call asyncrun#quickfix_toggle(6)<cr>
+nnoremap <F5> :call asyncrun#quickfix_toggle(12)<cr>
 nnoremap <silent> <F7> :AsyncRun -cwd=<root> make <cr>
 nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
 nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
