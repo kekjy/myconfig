@@ -70,6 +70,8 @@ alias l='ls -a --color'
 alias ll='ls -lah --color'
 alias ls='ls --color'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
+alias diff='diff --color'
 
 # End of lines configured by zsh-newuser-install
 alias 7z=7zz
+alias ddir='du -h --max-depth=1'

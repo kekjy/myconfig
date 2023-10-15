@@ -125,6 +125,8 @@ export HIGHLIGHT_STYLE="base16/gruv_box-dark-hard"
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] source /usr/share/doc/fzf/examples/key-bindings.bash
 
 alias fvim='vim $(fzf)'
+alias diff='diff --color'
+alias ddir='du -h --max-depth=1'
 
 export FZF_DEFAULT_COMMAND='ag --hidden -p <(printf "%s/\n" .git .svn .vscode .idea .vim node_modules build .sass-cache) -l -g ""'
 export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
