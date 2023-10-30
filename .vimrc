@@ -10,10 +10,13 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'morhetz/gruvbox'
 
 call plug#end()
+
+map ;y : !/mnt/c/Windows/System32/clip.exe<cr>u
 
 let g:airline_section_b = '%{strftime("%H:%M")}'
 
@@ -83,6 +86,20 @@ let g:ycm_filetype_whitelist = {
 			\ "zsh":1,
 			\ "zimbu":1,
 			\ }
+
+let g:ycm_language_server =
+            \[
+            \   {
+            \       'name': 'ccls',
+            \       'cmdline': ['ccls'],
+            \       'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+            \       'project_root_files': ['.ccls-root', 'compile_commands.json']
+            \   },
+            \]
+
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " ALE
 let g:ale_linters_explicit = 1
