@@ -27,9 +27,9 @@ autoload -Uz compinit && compinit -u
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 if [ ${UID} -eq 0 ]; then
-PROMPT="%{$fg[red]%}%n%{$rest_color%} %{$fg[green]%}%1|%~%{$reset_color%}%#> "
+PROMPT="%F{red}%n%{$rest_color%}@%F{166}%m%{$reset_color%} %F{118}%1|%~%{$reset_color%} %# "
 else
-PROMPT="%{$fg[blue]%}%n%{$rest_color%} %{$fg[green]%}%1|%~%{$reset_color%}%#> "
+PROMPT="%F{135}%n%{$rest_color%}@%F{166}%m%{$reset_color%} %F{118}%1|%~%{$reset_color%} \$ "
 fi
 RPROMPT="[%{$fg_bold[yellow]%}%?%{$reset_color%}]"
 
