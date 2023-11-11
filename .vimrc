@@ -43,9 +43,9 @@ set incsearch
 set nu rnu
 set ignorecase
 set smartcase
-set ts=4            " 设置缩进为4个空格
-set shiftwidth=4    " 表示每一级缩进的长度
-set softtabstop=4   " 退格键退回缩进空格的长度
+set ts=2            " 设置缩进为4个空格
+set shiftwidth=2    " 表示每一级缩进的长度
+set softtabstop=2   " 退格键退回缩进空格的长度
 set expandtab	    " 设置缩进用空格表示
 set autoindent      " 自动缩进
 
@@ -111,8 +111,8 @@ let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:airline#extensions#ale#enabled = 1
 
-let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_gcc_options = '-Wall -O2 -std=c2x'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++23'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 
@@ -140,7 +140,7 @@ func! CompileBuild()
     if &filetype == 'c'
        exec ':AsyncRun gcc "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
     elseif &filetype == 'cpp'
-       exec ':AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" -lstdc++'
+       exec ':AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" -lstdc++ -std=c++23'
     elseif &filetype == 'go'
        exec ":AsyncRun go build $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     endif
