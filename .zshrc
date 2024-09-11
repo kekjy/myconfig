@@ -47,16 +47,18 @@ export PYENV_ROOT=/home/kome/.pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # FZF Export
+alias fvim='vim $(fzf)'
 # export FZF_DEFAULT_COMMAND="find ! -name '*.git,*.vscode,*.idea' -type f"
+export FZF_DEFAULT_COMMAND='ag --hidden -p <(printf "%s/\n" .git .svn .vscode .idea .vim node_modules build .sass-cache) -l -g ""'
+export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 # DONOT FORGOT ADD KEYBINDINGS !
 # source /usr/share/doc/fzf/examples/key-bindings.bash
 # or RUN GITREPO install
-alias fvim='vim $(fzf)'
+[[ -s /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+[[ -s /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
-export FZF_DEFAULT_COMMAND='ag --hidden -p <(printf "%s/\n" .git .svn .vscode .idea .vim node_modules build .sass-cache) -l -g ""'
-export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+# LDLibrary
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 # Golang Export
 export GOROOT=/usr/lib/go
@@ -66,8 +68,8 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 export ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH=go1.20
 
 # Plugin
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -s /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -s /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
 
 # Alias
