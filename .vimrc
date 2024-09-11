@@ -3,7 +3,9 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'preservim/tagbar'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 Plug 'w0rp/ale'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ycm-core/YouCompleteMe'
@@ -11,7 +13,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'morhetz/gruvbox'
 
 call plug#end()
@@ -48,6 +50,11 @@ set shiftwidth=2    " 表示每一级缩进的长度
 set softtabstop=2   " 退格键退回缩进空格的长度
 set expandtab	    " 设置缩进用空格表示
 set autoindent      " 自动缩进
+
+" OSC-YANK
+nmap <leader>c <Plug>OSCYankOperator
+nmap <leader>cc <leader>c_
+vmap <leader>c <Plug>OSCYankVisual
 
 " FZF vim
 nmap <C-p> :Files<CR>
@@ -208,5 +215,5 @@ endfunction
 
 augroup myautoload
     autocmd!
-    autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+    autocmd BufWritePre *.h,*.hpp,*.cc,*.cpp call Formatonsave()
 augroup END
