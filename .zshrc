@@ -18,13 +18,16 @@ export HIGHLIGHT_STYLE="base16/gruv_box-dark-hard"
 
 # Bindkey
 # for rxvt
-bindkey '[3~' delete-char
+bindkey '[3~' delete-char # NOTICE remove in ubuntu
 
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 
 bindkey '[1;5A' history-search-backward
 bindkey '[1;5B' history-search-forward
+
+bindkey '[1;5C' forward-word
+bindkey '[1;5D' backward-word
 
 autoload -U colors && colors
 
@@ -64,7 +67,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export GOROOT=/usr/lib/go
 export GOPATH=~/workspace/go
 export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin:$GOBIN
+export PATH=$PATH:/usr/local/bin:$GOROOT/bin:$GOBIN
 export ASSUME_NO_MOVING_GC_UNSAFE_RISK_IT_WITH=go1.20
 
 # Plugin
