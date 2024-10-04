@@ -144,8 +144,7 @@ g:asyncrun_open = 12
 # 运行前保存文件
 g:asyncrun_save = 1
 # 用<F9>编译
-noremap <silent> <F9> :call CompileBuild()<cr>
-func CompileBuild()
+def g:CompileBuild()
     exec "w"
     if &filetype == 'c'
        exec ':AsyncRun gcc "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
@@ -154,11 +153,11 @@ func CompileBuild()
     elseif &filetype == 'go'
        exec ":AsyncRun go build $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
     endif
-endfunc
+enddef
+noremap <silent> <F9> :call CompileBuild()<cr>
 
 # 用<F5>运行
-noremap <silent> <F10> :call CompileRun()<cr>
-func CompileRun()
+def g:CompileRun()
     exec "w"
     if &filetype == 'c'
        exec ":AsyncRun -raw $(VIM_FILEDIR)/$(VIM_FILENOEXT)"
@@ -171,7 +170,8 @@ func CompileRun()
     elseif &filetype == 'javascript'
        exec ":AsyncRun -raw node $(VIM_FILEPATH)"
     endif
-endfunc
+enddef
+noremap <silent> <F10> :call CompileRun()<cr>
 
 # 设置 F5 打开/关闭 Quickfix 窗口
 nnoremap <F5> :call asyncrun#quickfix_toggle(12)<cr>
